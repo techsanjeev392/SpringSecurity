@@ -10,20 +10,21 @@ import com.sanjeev.learning.model.User;
 import com.sanjeev.learning.repository.UserRepository;
 
 @Component
-public class CustomeUserDetailsService implements UserDetailsService {
+public class CustomeUserDetailsService implements UserDetailsService{
 	
 	@Autowired
 	UserRepository userRepository;
-
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		User user = userRepository.findUserDetailsByEmailId(username);
-
-		return user;
 		
-	
+		if(username.equals(user.getEmailId())) {
+			return user;
+		}else {
+			throw new UsernameNotFoundException("User now found");
+		}
 	}
 	
 	

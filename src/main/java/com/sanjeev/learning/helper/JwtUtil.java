@@ -1,4 +1,4 @@
-package com.sanjeev.learning.security;
+package com.sanjeev.learning.helper;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -13,11 +13,13 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-public class JwtTokenHelper {
+public class JwtUtil {
+	
+
 
 	public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-	private String secret = "sanjeev12345";
+	private String secret = "sanjeevkumar12345";
 
 	public String getUsernameFromToken(String token) {
 		return getClaimFromToken(token, Claims::getSubject);
@@ -60,5 +62,7 @@ public class JwtTokenHelper {
 		return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
 
 	}
+
+
 
 }
